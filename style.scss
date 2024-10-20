@@ -1,0 +1,120 @@
+@import "./style2";
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #eee;
+  svg {
+    max-width: 100%;
+    height: 800px;
+  }
+  .mobile {
+    transform: translate(-30px, 28px);
+    animation: move 2s ease-in-out forwards;
+  }
+  .man {
+    opacity: 0;
+    transform: translate(30px, -28px);
+    animation: move-man 2s ease-in-out forwards;
+  }
+  .item {
+    transform: translateY(70px);
+    opacity: 0;
+    animation: move-items 2s ease-in-out forwards;
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        animation-delay: $i * 1s;
+      }
+    }
+  }
+  .item-hand {
+    transform: translateY(10px) rotate(-12deg);
+    transform-box: fill-box;
+    transform-origin: bottom right;
+
+    animation: item-hand 2s ease-in-out infinite alternate;
+  }
+  .item-ball {
+    transform: translateY(-10px);
+
+    animation: item-ball-hand 2s ease-in-out infinite alternate;
+  }
+  .clock {
+    transform-box: fill-box;
+    transform-origin: bottom right;
+    animation: clock-move 2s ease-in-out infinite;
+  }
+}
+@keyframes move {
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes move-man {
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+}
+@keyframes move-items {
+  50% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+}
+
+.heart-item {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(0.75);
+  }
+  20% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(0.75);
+  }
+  60% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(0.75);
+  }
+  100% {
+    transform: scale(0.75);
+  }
+}
+@keyframes item-ball-hand {
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+@keyframes item-hand {
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+@keyframes clock-move {
+  100% {
+    transform: rotate(360deg);
+    transform-origin: bottom right;
+    perspective-origin: center;
+    transform-box: fill-box;
+  }
+}
